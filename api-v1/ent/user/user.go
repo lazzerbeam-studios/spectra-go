@@ -19,6 +19,8 @@ const (
 	FieldEmail = "email"
 	// FieldName holds the string denoting the name field in the database.
 	FieldName = "name"
+	// FieldImage holds the string denoting the image field in the database.
+	FieldImage = "image"
 	// FieldDeleted holds the string denoting the deleted field in the database.
 	FieldDeleted = "deleted"
 	// FieldCreated holds the string denoting the created field in the database.
@@ -33,6 +35,7 @@ var Columns = []string{
 	FieldPassword,
 	FieldEmail,
 	FieldName,
+	FieldImage,
 	FieldDeleted,
 	FieldCreated,
 }
@@ -75,6 +78,11 @@ func ByEmail(opts ...sql.OrderTermOption) OrderOption {
 // ByName orders the results by the name field.
 func ByName(opts ...sql.OrderTermOption) OrderOption {
 	return sql.OrderByField(FieldName, opts...).ToFunc()
+}
+
+// ByImage orders the results by the image field.
+func ByImage(opts ...sql.OrderTermOption) OrderOption {
+	return sql.OrderByField(FieldImage, opts...).ToFunc()
 }
 
 // ByDeleted orders the results by the deleted field.

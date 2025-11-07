@@ -46,6 +46,20 @@ func (_c *UserCreate) SetNillableName(v *string) *UserCreate {
 	return _c
 }
 
+// SetImage sets the "image" field.
+func (_c *UserCreate) SetImage(v string) *UserCreate {
+	_c.mutation.SetImage(v)
+	return _c
+}
+
+// SetNillableImage sets the "image" field if the given value is not nil.
+func (_c *UserCreate) SetNillableImage(v *string) *UserCreate {
+	if v != nil {
+		_c.SetImage(*v)
+	}
+	return _c
+}
+
 // SetDeleted sets the "deleted" field.
 func (_c *UserCreate) SetDeleted(v bool) *UserCreate {
 	_c.mutation.SetDeleted(v)
@@ -167,6 +181,10 @@ func (_c *UserCreate) createSpec() (*User, *sqlgraph.CreateSpec) {
 	if value, ok := _c.mutation.Name(); ok {
 		_spec.SetField(user.FieldName, field.TypeString, value)
 		_node.Name = value
+	}
+	if value, ok := _c.mutation.Image(); ok {
+		_spec.SetField(user.FieldImage, field.TypeString, value)
+		_node.Image = value
 	}
 	if value, ok := _c.mutation.Deleted(); ok {
 		_spec.SetField(user.FieldDeleted, field.TypeBool, value)

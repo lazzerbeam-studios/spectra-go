@@ -76,6 +76,26 @@ func (_u *UserUpdate) ClearName() *UserUpdate {
 	return _u
 }
 
+// SetImage sets the "image" field.
+func (_u *UserUpdate) SetImage(v string) *UserUpdate {
+	_u.mutation.SetImage(v)
+	return _u
+}
+
+// SetNillableImage sets the "image" field if the given value is not nil.
+func (_u *UserUpdate) SetNillableImage(v *string) *UserUpdate {
+	if v != nil {
+		_u.SetImage(*v)
+	}
+	return _u
+}
+
+// ClearImage clears the value of the "image" field.
+func (_u *UserUpdate) ClearImage() *UserUpdate {
+	_u.mutation.ClearImage()
+	return _u
+}
+
 // SetDeleted sets the "deleted" field.
 func (_u *UserUpdate) SetDeleted(v bool) *UserUpdate {
 	_u.mutation.SetDeleted(v)
@@ -163,6 +183,12 @@ func (_u *UserUpdate) sqlSave(ctx context.Context) (_node int, err error) {
 	if _u.mutation.NameCleared() {
 		_spec.ClearField(user.FieldName, field.TypeString)
 	}
+	if value, ok := _u.mutation.Image(); ok {
+		_spec.SetField(user.FieldImage, field.TypeString, value)
+	}
+	if _u.mutation.ImageCleared() {
+		_spec.ClearField(user.FieldImage, field.TypeString)
+	}
 	if value, ok := _u.mutation.Deleted(); ok {
 		_spec.SetField(user.FieldDeleted, field.TypeBool, value)
 	}
@@ -237,6 +263,26 @@ func (_u *UserUpdateOne) SetNillableName(v *string) *UserUpdateOne {
 // ClearName clears the value of the "name" field.
 func (_u *UserUpdateOne) ClearName() *UserUpdateOne {
 	_u.mutation.ClearName()
+	return _u
+}
+
+// SetImage sets the "image" field.
+func (_u *UserUpdateOne) SetImage(v string) *UserUpdateOne {
+	_u.mutation.SetImage(v)
+	return _u
+}
+
+// SetNillableImage sets the "image" field if the given value is not nil.
+func (_u *UserUpdateOne) SetNillableImage(v *string) *UserUpdateOne {
+	if v != nil {
+		_u.SetImage(*v)
+	}
+	return _u
+}
+
+// ClearImage clears the value of the "image" field.
+func (_u *UserUpdateOne) ClearImage() *UserUpdateOne {
+	_u.mutation.ClearImage()
 	return _u
 }
 
@@ -356,6 +402,12 @@ func (_u *UserUpdateOne) sqlSave(ctx context.Context) (_node *User, err error) {
 	}
 	if _u.mutation.NameCleared() {
 		_spec.ClearField(user.FieldName, field.TypeString)
+	}
+	if value, ok := _u.mutation.Image(); ok {
+		_spec.SetField(user.FieldImage, field.TypeString, value)
+	}
+	if _u.mutation.ImageCleared() {
+		_spec.ClearField(user.FieldImage, field.TypeString)
 	}
 	if value, ok := _u.mutation.Deleted(); ok {
 		_spec.SetField(user.FieldDeleted, field.TypeBool, value)
