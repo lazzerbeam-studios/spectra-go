@@ -7,7 +7,8 @@ type Profile struct {
 
 	Email string `json:"email"`
 
-	Name string `json:"name"`
+	Name  string `json:"name"`
+	Image string `json:"image"`
 
 	Created time.Time `json:"created"`
 }
@@ -33,5 +34,6 @@ type User struct {
 
 	Email string `json:"email"`
 
-	Name string `json:"name"`
+	Name  string `json:"name"`
+	Image string `json:"image"`
 }

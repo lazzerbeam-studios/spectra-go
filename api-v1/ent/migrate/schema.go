@@ -14,6 +14,7 @@ var (
 		{Name: "password", Type: field.TypeString},
 		{Name: "email", Type: field.TypeString, Unique: true},
 		{Name: "name", Type: field.TypeString, Nullable: true},
+		{Name: "image", Type: field.TypeString, Nullable: true},
 		{Name: "deleted", Type: field.TypeBool, Default: false},
 		{Name: "created", Type: field.TypeTime, Nullable: true},
 	}

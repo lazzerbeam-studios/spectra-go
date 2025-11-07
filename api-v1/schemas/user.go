@@ -17,6 +17,7 @@ func (User) Fields() []ent.Field {
 		field.String("email").Unique(),
 
 		field.String("name").Optional(),
+		field.String("image").Optional(),
 
 		field.Bool("deleted").Default(false),
 

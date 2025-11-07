@@ -2,7 +2,6 @@ package users_api
 
 import (
 	"context"
-	"fmt"
 	"io"
 	"strconv"
 	"time"
@@ -50,10 +49,8 @@ func ProfileImageUpdateAPI(ctx context.Context, input *ProfileImageUpdateInput) 
 		return nil, huma.Error400BadRequest("Unable to upload image.")
 	}
 
-	fmt.Println(fileUrl)
-
 	profileObj, err := input.User.Update().
-		// SetImage(fileUrl).
+		SetImage(fileUrl).
 		Save(ctx)
 	if err != nil {
 		return nil, huma.Error400BadRequest("Unable to update user.")
