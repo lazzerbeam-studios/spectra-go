@@ -13,10 +13,12 @@ type User struct {
 
 func (User) Fields() []ent.Field {
 	return []ent.Field{
-		field.String("email").Unique(),
 		field.String("password"),
+		field.String("email").Unique(),
 
 		field.String("name").Optional(),
+
+		field.Bool("deleted").Default(false),
 
 		field.Time("created").Default(time.Now).Optional(),
 	}
