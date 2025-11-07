@@ -6,14 +6,21 @@ import (
 	"github.com/danielgtaylor/huma/v2"
 	"github.com/jinzhu/copier"
 
-	"api-go/ent/user"
 	"api-go/models"
 	"api-go/utils/auth"
-	"api-go/utils/db"
 )
 
 type ProfileGetInput struct {
-	Auth string `header:"Authorization"`
+	auth.AuthParam
+}
+
+func (input *ProfileGetInput) Resolve(ctx huma.Context) []error {
+	var err error
+	input.User, err = auth.AuthUser(input.Auth)
+	if err != nil {
+		return []error{huma.Error401Unauthorized("Unable to authenticate.")}
+	}
+	return nil
 }
 
 type ProfileGetOutput struct {
@@ -23,19 +30,9 @@ type ProfileGetOutput struct {
 }
 
 func ProfileGetAPI(ctx context.Context, input *ProfileGetInput) (*ProfileGetOutput, error) {
-	authID, authValid := auth.GetJWT(input.Auth)
-	if !authValid {
-		return nil, huma.Error401Unauthorized("Unable to authenticate.")
-	}
-
-	profileObj, err := db.EntDB.User.Query().Where(user.ID(authID)).Only(ctx)
-	if err != nil {
-		return nil, huma.Error404NotFound("User not found.")
-	}
-
 	response := &ProfileGetOutput{}
 	object := &models.Profile{}
-	copier.Copy(&object, &profileObj)
+	copier.Copy(&object, &input.User)
 	response.Body.Object = *object
 	return response, nil
 }

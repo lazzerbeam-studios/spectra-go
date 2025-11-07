@@ -14,8 +14,12 @@ import (
 func init() {
 	userFields := schemas.User{}.Fields()
 	_ = userFields
+	// userDescDeleted is the schema descriptor for deleted field.
+	userDescDeleted := userFields[3].Descriptor()
+	// user.DefaultDeleted holds the default value on creation for the deleted field.
+	user.DefaultDeleted = userDescDeleted.Default.(bool)
 	// userDescCreated is the schema descriptor for created field.
-	userDescCreated := userFields[3].Descriptor()
+	userDescCreated := userFields[4].Descriptor()
 	// user.DefaultCreated holds the default value on creation for the created field.
 	user.DefaultCreated = userDescCreated.Default.(func() time.Time)
 }
