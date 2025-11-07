@@ -20,6 +20,7 @@ import (
 	"api-go/utils/auth"
 	"api-go/utils/cache"
 	"api-go/utils/db"
+	"api-go/utils/files"
 )
 
 type OptionsCLI struct {
@@ -40,6 +41,7 @@ func main() {
 		db.SetBunDB(cfg.Database)
 		cache.SetCache(cfg.VALKEY)
 		auth.SetSecretJWT(cfg.Secret)
+		files.SetStorageGCP(cfg.Google_Credentials, cfg.Google_Project, cfg.Google_Bucket)
 
 		mutations.UserHook()
 
