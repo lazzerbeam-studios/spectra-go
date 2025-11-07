@@ -42,9 +42,10 @@
 **3. Create PostgreSQL:**
 
     1. Set Instance ID
-    2. Set secure password
+    2. Set secure password and unselect enable password policies
     3. Enable both Private IP and Public IP
     4. Select the newly created VPC (vpc-v1) for Private IP
+    5. Select "Allow unencrypted network traffic (not recommended)"
 
 postgres://postgres:[PASSWORD]@[IP_ADDRESS]:5432/postgres?sslmode=disable
 
