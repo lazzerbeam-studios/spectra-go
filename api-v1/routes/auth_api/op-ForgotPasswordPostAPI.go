@@ -33,7 +33,7 @@ func ForgotPasswordPostAPI(ctx context.Context, input *ForgotPasswordPostInput) 
 		return nil, huma.Error404NotFound("User not found.")
 	}
 
-	code := generator.GenerateRandomLetters() + strconv.Itoa(userObj.ID)
+	code := generator.RandomLetters(3) + strconv.Itoa(userObj.ID)
 	cache.SetKey(code, strconv.Itoa(userObj.ID), 21600)
 
 	fmt.Println(code)
