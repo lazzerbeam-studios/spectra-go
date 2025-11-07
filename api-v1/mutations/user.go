@@ -24,7 +24,7 @@ func UserHook() {
 			operationName := mutation.Op()
 			userID, exists := mutation.ID()
 			if exists && operationName.String() == "OpCreate" {
-				go events.UserTrigger(userID)
+				go events.User_Created_Event(userID)
 			}
 
 			return value, err
