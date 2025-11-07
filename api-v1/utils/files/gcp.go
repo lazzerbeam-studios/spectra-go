@@ -11,15 +11,17 @@ import (
 	"google.golang.org/api/option"
 )
 
-type StorageClientGoogleStruct struct {
+const UrlGCP = "https://storage.googleapis.com/"
+
+var ClientGCP *StorageClientGCP
+
+type StorageClientGCP struct {
 	bucket        string
 	project       string
 	storageClient *storage.Client
 }
 
-var StorageClientGoogle *StorageClientGoogleStruct
-
-func (client *StorageClientGoogleStruct) UploadFile(path string, content []byte) (string, error) {
+func (client *StorageClientGCP) UploadFile(path string, content []byte) (string, error) {
 	ctx, cancel := context.WithTimeout(context.Background(), time.Second*60)
 	defer cancel()
 
@@ -34,11 +36,11 @@ func (client *StorageClientGoogleStruct) UploadFile(path string, content []byte)
 		return "", err
 	}
 
-	url := "https://storage.googleapis.com/" + client.bucket + "/" + path
+	url := UrlGCP + client.bucket + "/" + path
 	return url, nil
 }
 
-func SetStorage(credentials string, project string, bucket string) {
+func SetStorageGCP(credentials string, project string, bucket string) {
 	credentialsByte, err := base64.StdEncoding.DecodeString(credentials)
 	if err != nil {
 		panic("Failed to decode GCP credentials")
@@ -52,7 +54,7 @@ func SetStorage(credentials string, project string, bucket string) {
 		panic("Failed to create GCP storage client")
 	}
 
-	StorageClientGoogle = &StorageClientGoogleStruct{
+	ClientGCP = &StorageClientGCP{
 		bucket:        bucket,
 		project:       project,
 		storageClient: storageClient,
