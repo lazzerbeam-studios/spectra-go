@@ -6,7 +6,7 @@ import (
 
 	"api-go/ent"
 	"api-go/ent/hook"
-	"api-go/triggers"
+	"api-go/events"
 	"api-go/utils/db"
 )
 
@@ -24,7 +24,7 @@ func UserHook() {
 			operationName := mutation.Op()
 			userID, exists := mutation.ID()
 			if exists && operationName.String() == "OpCreate" {
-				go triggers.UserTrigger(userID)
+				go events.UserTrigger(userID)
 			}
 
 			return value, err
