@@ -60,3 +60,18 @@ func (client *StorageClientGCP) UploadFile(path string, content []byte) (string,
 	url := UrlGCP + client.bucket + "/" + path
 	return url, nil
 }
+
+func (client *StorageClientGCP) DownloadFile(path string) ([]byte, error) {
+	ctx, cancel := context.WithTimeout(context.Background(), time.Second*60)
+	defer cancel()
+
+	reader, err := client.storageClient.Bucket(client.bucket).Object(path).NewReader(ctx)
+	if err != nil {
+		return nil, err
+	}
+	defer reader.Close()
+
+	data, err := io.ReadAll(reader)
+
+	return data, err
+}
