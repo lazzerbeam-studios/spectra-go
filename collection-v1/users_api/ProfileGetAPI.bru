@@ -17,6 +17,6 @@ headers {
 script:post-response {
   let data = res.getBody();
   if (data.object && data.object.id) {
-   bru.setEnvVar('id', data.object.id); 
+   bru.setEnvVar('id', data.object.id);
   }
 }

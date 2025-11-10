@@ -11,15 +11,38 @@ import (
 	"google.golang.org/api/option"
 )
 
-type StorageClientGoogleStruct struct {
+const UrlGCP = "https://storage.googleapis.com/"
+
+var ClientGCP *StorageClientGCP
+
+type StorageClientGCP struct {
 	bucket        string
 	project       string
 	storageClient *storage.Client
 }
 
-var StorageClientGoogle *StorageClientGoogleStruct
+func SetStorageGCP(credentials string, project string, bucket string) {
+	credentialsByte, err := base64.StdEncoding.DecodeString(credentials)
+	if err != nil {
+		panic("Failed to decode GCP credentials")
+	}
 
-func (client *StorageClientGoogleStruct) UploadFile(path string, content []byte) (string, error) {
+	storageClient, err := storage.NewClient(
+		context.Background(),
+		option.WithCredentialsJSON(credentialsByte),
+	)
+	if err != nil {
+		panic("Failed to create GCP storage client")
+	}
+
+	ClientGCP = &StorageClientGCP{
+		bucket:        bucket,
+		project:       project,
+		storageClient: storageClient,
+	}
+}
+
+func (client *StorageClientGCP) UploadFile(path string, content []byte) (string, error) {
 	ctx, cancel := context.WithTimeout(context.Background(), time.Second*60)
 	defer cancel()
 
@@ -34,27 +57,21 @@ func (client *StorageClientGoogleStruct) UploadFile(path string, content []byte)
 		return "", err
 	}
 
-	url := "https://storage.googleapis.com/" + client.bucket + "/" + path
+	url := UrlGCP + client.bucket + "/" + path
 	return url, nil
 }
 
-func SetStorage(credentials string, project string, bucket string) {
-	credentialsByte, err := base64.StdEncoding.DecodeString(credentials)
-	if err != nil {
-		panic("Failed to decode GCP credentials")
-	}
+func (client *StorageClientGCP) DownloadFile(path string) ([]byte, error) {
+	ctx, cancel := context.WithTimeout(context.Background(), time.Second*60)
+	defer cancel()
 
-	storageClient, err := storage.NewClient(
-		context.Background(),
-		option.WithCredentialsJSON(credentialsByte),
-	)
+	reader, err := client.storageClient.Bucket(client.bucket).Object(path).NewReader(ctx)
 	if err != nil {
-		panic("Failed to create GCP storage client")
+		return nil, err
 	}
+	defer reader.Close()
 
-	StorageClientGoogle = &StorageClientGoogleStruct{
-		bucket:        bucket,
-		project:       project,
-		storageClient: storageClient,
-	}
+	data, err := io.ReadAll(reader)
+
+	return data, err
 }

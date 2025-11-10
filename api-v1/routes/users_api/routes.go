@@ -29,4 +29,11 @@ func Register(api huma.API) {
 		Tags:        []string{"users"},
 	}, ProfileUpdateEmailAPI)
 
+	huma.Register(api, huma.Operation{
+		OperationID: "ProfileImageUpdateAPI",
+		Method:      http.MethodPost,
+		Path:        "/users/profile/image",
+		Tags:        []string{"users"},
+	}, ProfileImageUpdateAPI)
+
 }

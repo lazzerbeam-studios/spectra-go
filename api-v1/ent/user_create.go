@@ -20,15 +20,15 @@ type UserCreate struct {
 	hooks    []Hook
 }
 
-// SetEmail sets the "email" field.
-func (_c *UserCreate) SetEmail(v string) *UserCreate {
-	_c.mutation.SetEmail(v)
-	return _c
-}
-
 // SetPassword sets the "password" field.
 func (_c *UserCreate) SetPassword(v string) *UserCreate {
 	_c.mutation.SetPassword(v)
+	return _c
+}
+
+// SetEmail sets the "email" field.
+func (_c *UserCreate) SetEmail(v string) *UserCreate {
+	_c.mutation.SetEmail(v)
 	return _c
 }
 
@@ -42,6 +42,34 @@ func (_c *UserCreate) SetName(v string) *UserCreate {
 func (_c *UserCreate) SetNillableName(v *string) *UserCreate {
 	if v != nil {
 		_c.SetName(*v)
+	}
+	return _c
+}
+
+// SetImage sets the "image" field.
+func (_c *UserCreate) SetImage(v string) *UserCreate {
+	_c.mutation.SetImage(v)
+	return _c
+}
+
+// SetNillableImage sets the "image" field if the given value is not nil.
+func (_c *UserCreate) SetNillableImage(v *string) *UserCreate {
+	if v != nil {
+		_c.SetImage(*v)
+	}
+	return _c
+}
+
+// SetDeleted sets the "deleted" field.
+func (_c *UserCreate) SetDeleted(v bool) *UserCreate {
+	_c.mutation.SetDeleted(v)
+	return _c
+}
+
+// SetNillableDeleted sets the "deleted" field if the given value is not nil.
+func (_c *UserCreate) SetNillableDeleted(v *bool) *UserCreate {
+	if v != nil {
+		_c.SetDeleted(*v)
 	}
 	return _c
 }
@@ -95,6 +123,10 @@ func (_c *UserCreate) ExecX(ctx context.Context) {
 
 // defaults sets the default values of the builder before save.
 func (_c *UserCreate) defaults() {
+	if _, ok := _c.mutation.Deleted(); !ok {
+		v := user.DefaultDeleted
+		_c.mutation.SetDeleted(v)
+	}
 	if _, ok := _c.mutation.Created(); !ok {
 		v := user.DefaultCreated()
 		_c.mutation.SetCreated(v)
@@ -103,11 +135,14 @@ func (_c *UserCreate) defaults() {
 
 // check runs all checks and user-defined validators on the builder.
 func (_c *UserCreate) check() error {
+	if _, ok := _c.mutation.Password(); !ok {
+		return &ValidationError{Name: "password", err: errors.New(`ent: missing required field "User.password"`)}
+	}
 	if _, ok := _c.mutation.Email(); !ok {
 		return &ValidationError{Name: "email", err: errors.New(`ent: missing required field "User.email"`)}
 	}
-	if _, ok := _c.mutation.Password(); !ok {
-		return &ValidationError{Name: "password", err: errors.New(`ent: missing required field "User.password"`)}
+	if _, ok := _c.mutation.Deleted(); !ok {
+		return &ValidationError{Name: "deleted", err: errors.New(`ent: missing required field "User.deleted"`)}
 	}
 	return nil
 }
@@ -135,17 +170,25 @@ func (_c *UserCreate) createSpec() (*User, *sqlgraph.CreateSpec) {
 		_node = &User{config: _c.config}
 		_spec = sqlgraph.NewCreateSpec(user.Table, sqlgraph.NewFieldSpec(user.FieldID, field.TypeInt))
 	)
-	if value, ok := _c.mutation.Email(); ok {
-		_spec.SetField(user.FieldEmail, field.TypeString, value)
-		_node.Email = value
-	}
 	if value, ok := _c.mutation.Password(); ok {
 		_spec.SetField(user.FieldPassword, field.TypeString, value)
 		_node.Password = value
 	}
+	if value, ok := _c.mutation.Email(); ok {
+		_spec.SetField(user.FieldEmail, field.TypeString, value)
+		_node.Email = value
+	}
 	if value, ok := _c.mutation.Name(); ok {
 		_spec.SetField(user.FieldName, field.TypeString, value)
 		_node.Name = value
+	}
+	if value, ok := _c.mutation.Image(); ok {
+		_spec.SetField(user.FieldImage, field.TypeString, value)
+		_node.Image = value
+	}
+	if value, ok := _c.mutation.Deleted(); ok {
+		_spec.SetField(user.FieldDeleted, field.TypeBool, value)
+		_node.Deleted = value
 	}
 	if value, ok := _c.mutation.Created(); ok {
 		_spec.SetField(user.FieldCreated, field.TypeTime, value)

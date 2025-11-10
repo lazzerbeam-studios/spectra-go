@@ -13,12 +13,16 @@ const (
 	Label = "user"
 	// FieldID holds the string denoting the id field in the database.
 	FieldID = "id"
-	// FieldEmail holds the string denoting the email field in the database.
-	FieldEmail = "email"
 	// FieldPassword holds the string denoting the password field in the database.
 	FieldPassword = "password"
+	// FieldEmail holds the string denoting the email field in the database.
+	FieldEmail = "email"
 	// FieldName holds the string denoting the name field in the database.
 	FieldName = "name"
+	// FieldImage holds the string denoting the image field in the database.
+	FieldImage = "image"
+	// FieldDeleted holds the string denoting the deleted field in the database.
+	FieldDeleted = "deleted"
 	// FieldCreated holds the string denoting the created field in the database.
 	FieldCreated = "created"
 	// Table holds the table name of the user in the database.
@@ -28,9 +32,11 @@ const (
 // Columns holds all SQL columns for user fields.
 var Columns = []string{
 	FieldID,
-	FieldEmail,
 	FieldPassword,
+	FieldEmail,
 	FieldName,
+	FieldImage,
+	FieldDeleted,
 	FieldCreated,
 }
 
@@ -45,6 +51,8 @@ func ValidColumn(column string) bool {
 }
 
 var (
+	// DefaultDeleted holds the default value on creation for the "deleted" field.
+	DefaultDeleted bool
 	// DefaultCreated holds the default value on creation for the "created" field.
 	DefaultCreated func() time.Time
 )
@@ -57,19 +65,29 @@ func ByID(opts ...sql.OrderTermOption) OrderOption {
 	return sql.OrderByField(FieldID, opts...).ToFunc()
 }
 
-// ByEmail orders the results by the email field.
-func ByEmail(opts ...sql.OrderTermOption) OrderOption {
-	return sql.OrderByField(FieldEmail, opts...).ToFunc()
-}
-
 // ByPassword orders the results by the password field.
 func ByPassword(opts ...sql.OrderTermOption) OrderOption {
 	return sql.OrderByField(FieldPassword, opts...).ToFunc()
 }
 
+// ByEmail orders the results by the email field.
+func ByEmail(opts ...sql.OrderTermOption) OrderOption {
+	return sql.OrderByField(FieldEmail, opts...).ToFunc()
+}
+
 // ByName orders the results by the name field.
 func ByName(opts ...sql.OrderTermOption) OrderOption {
 	return sql.OrderByField(FieldName, opts...).ToFunc()
+}
+
+// ByImage orders the results by the image field.
+func ByImage(opts ...sql.OrderTermOption) OrderOption {
+	return sql.OrderByField(FieldImage, opts...).ToFunc()
+}
+
+// ByDeleted orders the results by the deleted field.
+func ByDeleted(opts ...sql.OrderTermOption) OrderOption {
+	return sql.OrderByField(FieldDeleted, opts...).ToFunc()
 }
 
 // ByCreated orders the results by the created field.

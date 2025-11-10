@@ -1,4 +1,4 @@
-package triggers
+package events
 
 import (
 	"context"
@@ -8,7 +8,7 @@ import (
 	"api-go/utils/db"
 )
 
-func UserTrigger(userID int) {
+func User_Created_Event(userID int) {
 	ctx := context.Background()
 	userObj, err := db.EntDB.User.Query().
 		Where(user.ID(userID)).
