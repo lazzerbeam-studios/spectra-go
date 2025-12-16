@@ -17,11 +17,9 @@ import (
 	"api-go/routes/auth_api"
 	"api-go/routes/home_api"
 	"api-go/routes/users_api"
-	"api-go/scripts/places"
 	"api-go/utils/auth"
 	"api-go/utils/cache"
 	"api-go/utils/db"
-	"api-go/utils/files"
 )
 
 type OptionsCLI struct {
@@ -42,8 +40,8 @@ func main() {
 		db.SetEntDB(cfg.Database)
 		cache.SetCache(cfg.VALKEY)
 		auth.SetSecretJWT(cfg.Secret)
-		places.SetMapsClient(cfg.Google_Maps_API_Key)
-		files.SetStorageGCP(cfg.Google_Credentials, cfg.Google_Project, cfg.Google_Bucket)
+		// places.SetMapsClient(cfg.Google_Maps_API_Key)
+		// files.SetStorageGCP(cfg.Google_Credentials, cfg.Google_Project, cfg.Google_Bucket)
 
 		mutations.UserHook()
 
