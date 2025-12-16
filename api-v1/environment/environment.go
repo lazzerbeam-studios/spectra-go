@@ -3,12 +3,13 @@ package environment
 import "github.com/spf13/viper"
 
 type EnvironmentConfiguration struct {
-	Secret             string `mapstructure:"SECRET"`
-	Database           string `mapstructure:"DATABASE"`
-	VALKEY             string `mapstructure:"VALKEY"`
-	Google_Bucket      string `mapstructure:"GOOGLE_BUCKET"`
-	Google_Project     string `mapstructure:"GOOGLE_PROJECT"`
-	Google_Credentials string `mapstructure:"GOOGLE_CREDENTIALS"`
+	Secret              string `mapstructure:"SECRET"`
+	Database            string `mapstructure:"DATABASE"`
+	VALKEY              string `mapstructure:"VALKEY"`
+	Google_Bucket       string `mapstructure:"GOOGLE_BUCKET"`
+	Google_Project      string `mapstructure:"GOOGLE_PROJECT"`
+	Google_Credentials  string `mapstructure:"GOOGLE_CREDENTIALS"`
+	Google_Maps_API_Key string `mapstructure:"GOOGLE_MAPS_API_KEY"`
 }
 
 func SetEnvironment(env string) (cfg EnvironmentConfiguration, err error) {

@@ -20,7 +20,6 @@ import (
 	"api-go/utils/auth"
 	"api-go/utils/cache"
 	"api-go/utils/db"
-	"api-go/utils/files"
 )
 
 type OptionsCLI struct {
@@ -37,11 +36,12 @@ func main() {
 			panic("Cannot load environment")
 		}
 
-		db.SetEntDB(cfg.Database)
 		db.SetBunDB(cfg.Database)
+		db.SetEntDB(cfg.Database)
 		cache.SetCache(cfg.VALKEY)
 		auth.SetSecretJWT(cfg.Secret)
-		files.SetStorageGCP(cfg.Google_Credentials, cfg.Google_Project, cfg.Google_Bucket)
+		// places.SetMapsClient(cfg.Google_Maps_API_Key)
+		// files.SetStorageGCP(cfg.Google_Credentials, cfg.Google_Project, cfg.Google_Bucket)
 
 		mutations.UserHook()
 
