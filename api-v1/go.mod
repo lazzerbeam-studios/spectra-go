@@ -18,6 +18,7 @@ require (
 	github.com/valkey-io/valkey-go v1.0.64
 	golang.org/x/crypto v0.41.0
 	google.golang.org/api v0.189.0
+	googlemaps.github.io/maps v1.7.0
 )
 
 require (
