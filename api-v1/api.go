@@ -38,8 +38,8 @@ func main() {
 			panic("Cannot load environment")
 		}
 
-		db.SetEntDB(cfg.Database)
 		db.SetBunDB(cfg.Database)
+		db.SetEntDB(cfg.Database)
 		cache.SetCache(cfg.VALKEY)
 		auth.SetSecretJWT(cfg.Secret)
 		places.SetMapsClient(cfg.Google_Maps_API_Key)
