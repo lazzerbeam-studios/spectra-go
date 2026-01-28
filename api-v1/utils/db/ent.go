@@ -16,12 +16,12 @@ var EntDB *ent.Client
 func SetEntDB(urlDB string) {
 	connDB, err := sql.Open("pgx", urlDB)
 	if err != nil {
-		panic("Failed to open database connection")
+		panic("failed to open database connection")
 	}
 
 	err = connDB.Ping()
 	if err != nil {
-		panic("Failed to ping database")
+		panic("failed to ping database")
 	}
 
 	sqlDB := entSQL.OpenDB(dialect.Postgres, connDB)
