@@ -7,15 +7,9 @@ import (
 	"github.com/golang-jwt/jwt/v5"
 )
 
-var secretKey []byte
-
 type Claims struct {
 	Email string `json:"email"`
 	jwt.RegisteredClaims
-}
-
-func SetSecretJWT(secret string) {
-	secretKey = []byte(secret)
 }
 
 func CreateJWT(id string, email string) (string, error) {
