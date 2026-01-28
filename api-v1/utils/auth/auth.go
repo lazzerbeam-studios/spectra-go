@@ -28,15 +28,18 @@ func CreateJWT(id string, email string) (string, error) {
 
 func GetJWT(tokenString string) (int, bool) {
 	claims := &Claims{}
+
 	token, err := jwt.ParseWithClaims(tokenString, claims, func(token *jwt.Token) (any, error) {
 		return SecretKey, nil
 	})
 	if err != nil {
 		return 0, false
 	}
+
 	id, err := strconv.Atoi(claims.ID)
 	if err != nil {
 		return 0, false
 	}
+
 	return id, token.Valid
 }
