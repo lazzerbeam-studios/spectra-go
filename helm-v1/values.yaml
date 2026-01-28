@@ -1,5 +1,5 @@
 docker:
-  image: ghcr.io/lazzerbeam-studios/spectra:ute1765860480
+  image: ghcr.io/lazzerbeam-studios/spectra:ute1769582441
 
 api:
   env: docker

@@ -17,12 +17,12 @@ type AuthParam struct {
 func AuthUser(token string) (*ent.User, error) {
 	ctx := context.Background()
 
-	authID, authValid := GetJWT(token)
-	if !authValid {
+	userID, userValid := GetJWT(token)
+	if !userValid {
 		return nil, errors.New("unable to authenticate")
 	}
 
-	userObj, err := db.EntDB.User.Query().Where(user.ID(authID)).Only(ctx)
+	userObj, err := db.EntDB.User.Query().Where(user.ID(userID)).Only(ctx)
 	if err != nil {
 		return nil, errors.New("user not found")
 	}

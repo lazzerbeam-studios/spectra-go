@@ -5,7 +5,7 @@ import "github.com/spf13/viper"
 type EnvironmentConfiguration struct {
 	Secret              string `mapstructure:"SECRET"`
 	Database            string `mapstructure:"DATABASE"`
-	VALKEY              string `mapstructure:"VALKEY"`
+	Valkey              string `mapstructure:"VALKEY"`
 	Google_Bucket       string `mapstructure:"GOOGLE_BUCKET"`
 	Google_Project      string `mapstructure:"GOOGLE_PROJECT"`
 	Google_Credentials  string `mapstructure:"GOOGLE_CREDENTIALS"`
