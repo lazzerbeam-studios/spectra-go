@@ -26,9 +26,9 @@ func CreateJWT(id string, email string) (string, error) {
 	return tokenString, err
 }
 
-func GetJWT(tokenStr string) (int, bool) {
+func GetJWT(tokenString string) (int, bool) {
 	claims := &Claims{}
-	token, err := jwt.ParseWithClaims(tokenStr, claims, func(token *jwt.Token) (any, error) {
+	token, err := jwt.ParseWithClaims(tokenString, claims, func(token *jwt.Token) (any, error) {
 		return SecretKey, nil
 	})
 	if err != nil {
