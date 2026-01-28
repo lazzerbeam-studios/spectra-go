@@ -22,14 +22,14 @@ func CreateJWT(id string, email string) (string, error) {
 		},
 	}
 	token := jwt.NewWithClaims(jwt.SigningMethodHS256, claims)
-	tokenString, err := token.SignedString(secretKey)
+	tokenString, err := token.SignedString(SecretKey)
 	return tokenString, err
 }
 
 func GetJWT(tokenStr string) (int, bool) {
 	claims := &Claims{}
 	token, err := jwt.ParseWithClaims(tokenStr, claims, func(token *jwt.Token) (any, error) {
-		return secretKey, nil
+		return SecretKey, nil
 	})
 	if err != nil {
 		return 0, false

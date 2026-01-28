@@ -1,7 +1,7 @@
 package auth
 
-var secretKey []byte
+var SecretKey []byte
 
 func SetSecretJWT(secret string) {
-	secretKey = []byte(secret)
+	SecretKey = []byte(secret)
 }
