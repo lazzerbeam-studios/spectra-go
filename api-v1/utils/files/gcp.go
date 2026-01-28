@@ -24,7 +24,7 @@ type StorageClientGCP struct {
 func SetClientGCP(credentials string, project string, bucket string) {
 	credentialsByte, err := base64.StdEncoding.DecodeString(credentials)
 	if err != nil {
-		panic("Failed to decode GCP credentials")
+		panic("failed to decode GCP credentials")
 	}
 
 	storageClient, err := storage.NewClient(
@@ -32,7 +32,7 @@ func SetClientGCP(credentials string, project string, bucket string) {
 		option.WithCredentialsJSON(credentialsByte),
 	)
 	if err != nil {
-		panic("Failed to create GCP storage client")
+		panic("failed to create GCP storage client")
 	}
 
 	ClientGCP = &StorageClientGCP{
