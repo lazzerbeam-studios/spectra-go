@@ -14,16 +14,16 @@ import (
 var EntDB *ent.Client
 
 func SetEntDB(urlDB string) {
-	connDB, err := sql.Open("pgx", urlDB)
+	connectionDB, err := sql.Open("pgx", urlDB)
 	if err != nil {
 		panic("failed to open database connection")
 	}
 
-	err = connDB.Ping()
+	err = connectionDB.Ping()
 	if err != nil {
 		panic("failed to ping database")
 	}
 
-	sqlDB := entSQL.OpenDB(dialect.Postgres, connDB)
+	sqlDB := entSQL.OpenDB(dialect.Postgres, connectionDB)
 	EntDB = ent.NewClient(ent.Driver(sqlDB))
 }
