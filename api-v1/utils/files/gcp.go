@@ -13,7 +13,7 @@ import (
 
 const UrlGCP = "https://storage.googleapis.com/"
 
-var ClientGCP *StorageClientServiceGCP
+var StorageClientGCP *StorageClientServiceGCP
 
 type StorageClientServiceGCP struct {
 	bucket        string
@@ -35,7 +35,7 @@ func SetClientGCP(credentials string, project string, bucket string) {
 		panic("failed to create GCP storage client")
 	}
 
-	ClientGCP = &StorageClientServiceGCP{
+	StorageClientGCP = &StorageClientServiceGCP{
 		bucket:        bucket,
 		project:       project,
 		storageClient: storageClient,
