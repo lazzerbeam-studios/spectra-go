@@ -44,7 +44,7 @@ func ProfileImageUpdateAPI(ctx context.Context, input *ProfileImageUpdateInput) 
 	}
 
 	fileDir := "users/" + strconv.FormatInt(time.Now().UnixNano(), 10) + "-avatar.png"
-	fileUrl, err := files.ClientGCP.UploadFile(fileDir, image)
+	fileUrl, err := files.StorageClientGCP.UploadFile(fileDir, image)
 	if err != nil {
 		return nil, huma.Error400BadRequest("Unable to upload image.")
 	}

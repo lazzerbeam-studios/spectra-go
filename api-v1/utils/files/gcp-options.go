@@ -7,7 +7,7 @@ import (
 	"time"
 )
 
-func (client *StorageClientGCP) UploadFileSVG(path string, content []byte) (string, error) {
+func (client *StorageClientServiceGCP) UploadFileSVG(path string, content []byte) (string, error) {
 	ctx, cancel := context.WithTimeout(context.Background(), time.Second*60)
 	defer cancel()
 
