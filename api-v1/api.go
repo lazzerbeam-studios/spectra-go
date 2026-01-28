@@ -33,7 +33,7 @@ func main() {
 
 		cfg, err := environment.SetEnvironment(options.Env)
 		if err != nil {
-			panic("Cannot load environment")
+			panic("cannot load environment")
 		}
 
 		db.SetBunDB(cfg.Database)
