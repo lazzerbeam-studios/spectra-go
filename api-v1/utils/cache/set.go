@@ -10,6 +10,6 @@ func SetClient(address string) {
 		InitAddress: []string{address},
 	})
 	if err != nil {
-		panic("Failed to open valkey connection")
+		panic("failed to open valkey connection")
 	}
 }
