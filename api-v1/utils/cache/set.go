@@ -4,7 +4,7 @@ import "github.com/valkey-io/valkey-go"
 
 var ValkeyClient valkey.Client
 
-func SetCache(address string) {
+func SetClient(address string) {
 	var err error
 	ValkeyClient, err = valkey.NewClient(valkey.ClientOption{
 		InitAddress: []string{address},
