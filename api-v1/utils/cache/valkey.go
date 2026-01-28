@@ -1,22 +1,6 @@
 package cache
 
-import (
-	"context"
-
-	"github.com/valkey-io/valkey-go"
-)
-
-var ValkeyClient valkey.Client
-
-func SetCache(address string) {
-	var err error
-	ValkeyClient, err = valkey.NewClient(valkey.ClientOption{
-		InitAddress: []string{address},
-	})
-	if err != nil {
-		panic("Failed to open valkey connection")
-	}
-}
+import "context"
 
 func SetKey(key string, value string, seconds int64) error {
 	ctx := context.Background()
