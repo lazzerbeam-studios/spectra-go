@@ -33,15 +33,15 @@ func main() {
 
 		cfg, err := environment.SetEnvironment(options.Env)
 		if err != nil {
-			panic("Cannot load environment")
+			panic("cannot load environment")
 		}
 
 		db.SetBunDB(cfg.Database)
 		db.SetEntDB(cfg.Database)
-		cache.SetCache(cfg.VALKEY)
-		auth.SetSecretJWT(cfg.Secret)
+		auth.SetSecret(cfg.Secret)
+		cache.SetClient(cfg.Valkey)
 		// places.SetMapsClient(cfg.Google_Maps_API_Key)
-		// files.SetStorageGCP(cfg.Google_Credentials, cfg.Google_Project, cfg.Google_Bucket)
+		// files.SetClientGCP(cfg.Google_Credentials, cfg.Google_Project, cfg.Google_Bucket)
 
 		mutations.UserHook()
 
