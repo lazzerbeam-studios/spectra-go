@@ -2,6 +2,6 @@ package auth
 
 var SecretKey []byte
 
-func SetSecretJWT(secret string) {
+func SetSecret(secret string) {
 	SecretKey = []byte(secret)
 }

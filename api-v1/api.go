@@ -39,7 +39,7 @@ func main() {
 		db.SetBunDB(cfg.Database)
 		db.SetEntDB(cfg.Database)
 		cache.SetCache(cfg.VALKEY)
-		auth.SetSecretJWT(cfg.Secret)
+		auth.SetSecret(cfg.Secret)
 		// places.SetMapsClient(cfg.Google_Maps_API_Key)
 		// files.SetStorageGCP(cfg.Google_Credentials, cfg.Google_Project, cfg.Google_Bucket)
 
