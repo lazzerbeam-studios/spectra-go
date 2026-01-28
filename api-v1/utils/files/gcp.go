@@ -13,9 +13,9 @@ import (
 
 const UrlGCP = "https://storage.googleapis.com/"
 
-var ClientGCP *StorageClientGCP
+var ClientGCP *StorageClientServiceGCP
 
-type StorageClientGCP struct {
+type StorageClientServiceGCP struct {
 	bucket        string
 	project       string
 	storageClient *storage.Client
@@ -35,14 +35,14 @@ func SetClientGCP(credentials string, project string, bucket string) {
 		panic("failed to create GCP storage client")
 	}
 
-	ClientGCP = &StorageClientGCP{
+	ClientGCP = &StorageClientServiceGCP{
 		bucket:        bucket,
 		project:       project,
 		storageClient: storageClient,
 	}
 }
 
-func (client *StorageClientGCP) UploadFile(path string, content []byte) (string, error) {
+func (client *StorageClientServiceGCP) UploadFile(path string, content []byte) (string, error) {
 	ctx, cancel := context.WithTimeout(context.Background(), time.Second*60)
 	defer cancel()
 
@@ -61,7 +61,7 @@ func (client *StorageClientGCP) UploadFile(path string, content []byte) (string,
 	return url, nil
 }
 
-func (client *StorageClientGCP) DownloadFile(path string) ([]byte, error) {
+func (client *StorageClientServiceGCP) DownloadFile(path string) ([]byte, error) {
 	ctx, cancel := context.WithTimeout(context.Background(), time.Second*60)
 	defer cancel()
 
