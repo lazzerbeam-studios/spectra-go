@@ -61,7 +61,7 @@ func runApi(hooks humacli.Hooks, options *OptionsCLI) {
 		AllowOrigins: []string{"*"},
 	}))
 
-	config := huma.DefaultConfig("Spectra", "1.0.0")
+	config := huma.DefaultConfig("Photon", "1.0.0")
 	if options.Env == "prod" {
 		config.OpenAPIPath = ""
 		config.DocsPath = ""
