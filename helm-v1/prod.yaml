@@ -12,4 +12,4 @@ cloud: gcp
 
 gcp:
   ip: api-prod-ip
-  domain: api-prod.lazzerbeam.org
+  domain: api-prod.lazzr.com

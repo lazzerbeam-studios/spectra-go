@@ -12,6 +12,6 @@ type HomeGetOutput struct {
 
 func HomeGetAPI(ctx context.Context, input *struct{}) (*HomeGetOutput, error) {
 	response := &HomeGetOutput{}
-	response.Body.Message = "Welcome to Spectra"
+	response.Body.Message = "Welcome to Photon"
 	return response, nil
 }

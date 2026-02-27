@@ -1,6 +1,6 @@
 {
   "version": "1",
-  "name": "spectra",
+  "name": "photon",
   "type": "collection",
   "ignore": [
     "node_modules",
