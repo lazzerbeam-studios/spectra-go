@@ -26,7 +26,7 @@ func Test_HomeGetAPI(t *testing.T) {
 		t.Fatalf("Failed to unmarshal response: %s", err.Error())
 	}
 
-	if !strings.EqualFold(responseOutput.Message, "Welcome to Spectra") {
+	if !strings.EqualFold(responseOutput.Message, "Welcome to Photon") {
 		t.Fatalf("Unexpected response: %s", response.Body.String())
 	}
 }
