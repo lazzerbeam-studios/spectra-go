@@ -12,4 +12,4 @@ cloud: gcp
 
 gcp:
   ip: api-stag-ip
-  domain: api-stag.lazzerbeam.org
+  domain: api-stag.lazzr.com
