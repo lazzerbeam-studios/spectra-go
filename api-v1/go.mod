@@ -5,6 +5,7 @@ go 1.25.0
 require (
 	cloud.google.com/go/storage v1.58.0
 	entgo.io/ent v0.14.5
+	github.com/MicahParks/keyfunc/v2 v2.1.0
 	github.com/danielgtaylor/huma/v2 v2.34.1
 	github.com/go-co-op/gocron/v2 v2.19.0
 	github.com/golang-jwt/jwt/v5 v5.3.0
