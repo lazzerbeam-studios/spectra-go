@@ -1,5 +1,5 @@
 docker:
-  image: ghcr.io/lazzr-labs/photon:ute1774844733
+  image: ghcr.io/lazzr-labs/photon:ute1774887950
 
 api:
   env: docker
