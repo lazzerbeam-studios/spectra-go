@@ -40,6 +40,8 @@ func main() {
 		db.SetEntDB(cfg.Database)
 		auth.SetSecret(cfg.Secret)
 		cache.SetClient(cfg.Valkey)
+		auth.SetSupabaseSecret(cfg.SupabaseSecret)
+		auth.SetSupabaseIssuer(cfg.SupabaseIssuer)
 		// places.SetClient(cfg.Google_Maps_API_Key)
 		// files.SetClientGCP(cfg.Google_Credentials, cfg.Google_Project, cfg.Google_Bucket)
 

@@ -23,6 +23,13 @@ func Register(api huma.API) {
 	}, SignInAPI)
 
 	huma.Register(api, huma.Operation{
+		OperationID: "SignInSupabaseAPI",
+		Method:      http.MethodPost,
+		Path:        "/auth/signin/supabase",
+		Tags:        []string{"auth"},
+	}, SignInSupabaseAPI)
+
+	huma.Register(api, huma.Operation{
 		OperationID: "PasswordForgotPostAPI",
 		Method:      http.MethodPost,
 		Path:        "/auth/passwordforgot",

@@ -56,6 +56,26 @@ func (_u *UserUpdate) SetNillableEmail(v *string) *UserUpdate {
 	return _u
 }
 
+// SetSupabase sets the "supabase" field.
+func (_u *UserUpdate) SetSupabase(v string) *UserUpdate {
+	_u.mutation.SetSupabase(v)
+	return _u
+}
+
+// SetNillableSupabase sets the "supabase" field if the given value is not nil.
+func (_u *UserUpdate) SetNillableSupabase(v *string) *UserUpdate {
+	if v != nil {
+		_u.SetSupabase(*v)
+	}
+	return _u
+}
+
+// ClearSupabase clears the value of the "supabase" field.
+func (_u *UserUpdate) ClearSupabase() *UserUpdate {
+	_u.mutation.ClearSupabase()
+	return _u
+}
+
 // SetName sets the "name" field.
 func (_u *UserUpdate) SetName(v string) *UserUpdate {
 	_u.mutation.SetName(v)
@@ -177,6 +197,12 @@ func (_u *UserUpdate) sqlSave(ctx context.Context) (_node int, err error) {
 	if value, ok := _u.mutation.Email(); ok {
 		_spec.SetField(user.FieldEmail, field.TypeString, value)
 	}
+	if value, ok := _u.mutation.Supabase(); ok {
+		_spec.SetField(user.FieldSupabase, field.TypeString, value)
+	}
+	if _u.mutation.SupabaseCleared() {
+		_spec.ClearField(user.FieldSupabase, field.TypeString)
+	}
 	if value, ok := _u.mutation.Name(); ok {
 		_spec.SetField(user.FieldName, field.TypeString, value)
 	}
@@ -243,6 +269,26 @@ func (_u *UserUpdateOne) SetNillableEmail(v *string) *UserUpdateOne {
 	if v != nil {
 		_u.SetEmail(*v)
 	}
+	return _u
+}
+
+// SetSupabase sets the "supabase" field.
+func (_u *UserUpdateOne) SetSupabase(v string) *UserUpdateOne {
+	_u.mutation.SetSupabase(v)
+	return _u
+}
+
+// SetNillableSupabase sets the "supabase" field if the given value is not nil.
+func (_u *UserUpdateOne) SetNillableSupabase(v *string) *UserUpdateOne {
+	if v != nil {
+		_u.SetSupabase(*v)
+	}
+	return _u
+}
+
+// ClearSupabase clears the value of the "supabase" field.
+func (_u *UserUpdateOne) ClearSupabase() *UserUpdateOne {
+	_u.mutation.ClearSupabase()
 	return _u
 }
 
@@ -396,6 +442,12 @@ func (_u *UserUpdateOne) sqlSave(ctx context.Context) (_node *User, err error) {
 	}
 	if value, ok := _u.mutation.Email(); ok {
 		_spec.SetField(user.FieldEmail, field.TypeString, value)
+	}
+	if value, ok := _u.mutation.Supabase(); ok {
+		_spec.SetField(user.FieldSupabase, field.TypeString, value)
+	}
+	if _u.mutation.SupabaseCleared() {
+		_spec.ClearField(user.FieldSupabase, field.TypeString)
 	}
 	if value, ok := _u.mutation.Name(); ok {
 		_spec.SetField(user.FieldName, field.TypeString, value)

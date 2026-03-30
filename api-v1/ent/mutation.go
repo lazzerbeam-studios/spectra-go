@@ -35,6 +35,7 @@ type UserMutation struct {
 	id            *int
 	password      *string
 	email         *string
+	supabase      *string
 	name          *string
 	image         *string
 	deleted       *bool
@@ -213,6 +214,55 @@ func (m *UserMutation) OldEmail(ctx context.Context) (v string, err error) {
 // ResetEmail resets all changes to the "email" field.
 func (m *UserMutation) ResetEmail() {
 	m.email = nil
+}
+
+// SetSupabase sets the "supabase" field.
+func (m *UserMutation) SetSupabase(s string) {
+	m.supabase = &s
+}
+
+// Supabase returns the value of the "supabase" field in the mutation.
+func (m *UserMutation) Supabase() (r string, exists bool) {
+	v := m.supabase
+	if v == nil {
+		return
+	}
+	return *v, true
+}
+
+// OldSupabase returns the old "supabase" field's value of the User entity.
+// If the User object wasn't provided to the builder, the object is fetched from the database.
+// An error is returned if the mutation operation is not UpdateOne, or the database query fails.
+func (m *UserMutation) OldSupabase(ctx context.Context) (v string, err error) {
+	if !m.op.Is(OpUpdateOne) {
+		return v, errors.New("OldSupabase is only allowed on UpdateOne operations")
+	}
+	if m.id == nil || m.oldValue == nil {
+		return v, errors.New("OldSupabase requires an ID field in the mutation")
+	}
+	oldValue, err := m.oldValue(ctx)
+	if err != nil {
+		return v, fmt.Errorf("querying old value for OldSupabase: %w", err)
+	}
+	return oldValue.Supabase, nil
+}
+
+// ClearSupabase clears the value of the "supabase" field.
+func (m *UserMutation) ClearSupabase() {
+	m.supabase = nil
+	m.clearedFields[user.FieldSupabase] = struct{}{}
+}
+
+// SupabaseCleared returns if the "supabase" field was cleared in this mutation.
+func (m *UserMutation) SupabaseCleared() bool {
+	_, ok := m.clearedFields[user.FieldSupabase]
+	return ok
+}
+
+// ResetSupabase resets all changes to the "supabase" field.
+func (m *UserMutation) ResetSupabase() {
+	m.supabase = nil
+	delete(m.clearedFields, user.FieldSupabase)
 }
 
 // SetName sets the "name" field.
@@ -432,12 +482,15 @@ func (m *UserMutation) Type() string {
 // order to get all numeric fields that were incremented/decremented, call
 // AddedFields().
 func (m *UserMutation) Fields() []string {
-	fields := make([]string, 0, 6)
+	fields := make([]string, 0, 7)
 	if m.password != nil {
 		fields = append(fields, user.FieldPassword)
 	}
 	if m.email != nil {
 		fields = append(fields, user.FieldEmail)
+	}
+	if m.supabase != nil {
+		fields = append(fields, user.FieldSupabase)
 	}
 	if m.name != nil {
 		fields = append(fields, user.FieldName)
@@ -463,6 +516,8 @@ func (m *UserMutation) Field(name string) (ent.Value, bool) {
 		return m.Password()
 	case user.FieldEmail:
 		return m.Email()
+	case user.FieldSupabase:
+		return m.Supabase()
 	case user.FieldName:
 		return m.Name()
 	case user.FieldImage:
@@ -484,6 +539,8 @@ func (m *UserMutation) OldField(ctx context.Context, name string) (ent.Value, er
 		return m.OldPassword(ctx)
 	case user.FieldEmail:
 		return m.OldEmail(ctx)
+	case user.FieldSupabase:
+		return m.OldSupabase(ctx)
 	case user.FieldName:
 		return m.OldName(ctx)
 	case user.FieldImage:
@@ -514,6 +571,13 @@ func (m *UserMutation) SetField(name string, value ent.Value) error {
 			return fmt.Errorf("unexpected type %T for field %s", value, name)
 		}
 		m.SetEmail(v)
+		return nil
+	case user.FieldSupabase:
+		v, ok := value.(string)
+		if !ok {
+			return fmt.Errorf("unexpected type %T for field %s", value, name)
+		}
+		m.SetSupabase(v)
 		return nil
 	case user.FieldName:
 		v, ok := value.(string)
@@ -573,6 +637,9 @@ func (m *UserMutation) AddField(name string, value ent.Value) error {
 // mutation.
 func (m *UserMutation) ClearedFields() []string {
 	var fields []string
+	if m.FieldCleared(user.FieldSupabase) {
+		fields = append(fields, user.FieldSupabase)
+	}
 	if m.FieldCleared(user.FieldName) {
 		fields = append(fields, user.FieldName)
 	}
@@ -596,6 +663,9 @@ func (m *UserMutation) FieldCleared(name string) bool {
 // error if the field is not defined in the schema.
 func (m *UserMutation) ClearField(name string) error {
 	switch name {
+	case user.FieldSupabase:
+		m.ClearSupabase()
+		return nil
 	case user.FieldName:
 		m.ClearName()
 		return nil
@@ -618,6 +688,9 @@ func (m *UserMutation) ResetField(name string) error {
 		return nil
 	case user.FieldEmail:
 		m.ResetEmail()
+		return nil
+	case user.FieldSupabase:
+		m.ResetSupabase()
 		return nil
 	case user.FieldName:
 		m.ResetName()
