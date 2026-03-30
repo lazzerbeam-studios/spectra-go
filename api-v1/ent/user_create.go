@@ -32,6 +32,20 @@ func (_c *UserCreate) SetEmail(v string) *UserCreate {
 	return _c
 }
 
+// SetSupabase sets the "supabase" field.
+func (_c *UserCreate) SetSupabase(v string) *UserCreate {
+	_c.mutation.SetSupabase(v)
+	return _c
+}
+
+// SetNillableSupabase sets the "supabase" field if the given value is not nil.
+func (_c *UserCreate) SetNillableSupabase(v *string) *UserCreate {
+	if v != nil {
+		_c.SetSupabase(*v)
+	}
+	return _c
+}
+
 // SetName sets the "name" field.
 func (_c *UserCreate) SetName(v string) *UserCreate {
 	_c.mutation.SetName(v)
@@ -177,6 +191,10 @@ func (_c *UserCreate) createSpec() (*User, *sqlgraph.CreateSpec) {
 	if value, ok := _c.mutation.Email(); ok {
 		_spec.SetField(user.FieldEmail, field.TypeString, value)
 		_node.Email = value
+	}
+	if value, ok := _c.mutation.Supabase(); ok {
+		_spec.SetField(user.FieldSupabase, field.TypeString, value)
+		_node.Supabase = value
 	}
 	if value, ok := _c.mutation.Name(); ok {
 		_spec.SetField(user.FieldName, field.TypeString, value)

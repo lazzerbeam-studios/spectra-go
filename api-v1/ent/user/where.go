@@ -64,6 +64,11 @@ func Email(v string) predicate.User {
 	return predicate.User(sql.FieldEQ(FieldEmail, v))
 }
 
+// Supabase applies equality check predicate on the "supabase" field. It's identical to SupabaseEQ.
+func Supabase(v string) predicate.User {
+	return predicate.User(sql.FieldEQ(FieldSupabase, v))
+}
+
 // Name applies equality check predicate on the "name" field. It's identical to NameEQ.
 func Name(v string) predicate.User {
 	return predicate.User(sql.FieldEQ(FieldName, v))
@@ -212,6 +217,81 @@ func EmailEqualFold(v string) predicate.User {
 // EmailContainsFold applies the ContainsFold predicate on the "email" field.
 func EmailContainsFold(v string) predicate.User {
 	return predicate.User(sql.FieldContainsFold(FieldEmail, v))
+}
+
+// SupabaseEQ applies the EQ predicate on the "supabase" field.
+func SupabaseEQ(v string) predicate.User {
+	return predicate.User(sql.FieldEQ(FieldSupabase, v))
+}
+
+// SupabaseNEQ applies the NEQ predicate on the "supabase" field.
+func SupabaseNEQ(v string) predicate.User {
+	return predicate.User(sql.FieldNEQ(FieldSupabase, v))
+}
+
+// SupabaseIn applies the In predicate on the "supabase" field.
+func SupabaseIn(vs ...string) predicate.User {
+	return predicate.User(sql.FieldIn(FieldSupabase, vs...))
+}
+
+// SupabaseNotIn applies the NotIn predicate on the "supabase" field.
+func SupabaseNotIn(vs ...string) predicate.User {
+	return predicate.User(sql.FieldNotIn(FieldSupabase, vs...))
+}
+
+// SupabaseGT applies the GT predicate on the "supabase" field.
+func SupabaseGT(v string) predicate.User {
+	return predicate.User(sql.FieldGT(FieldSupabase, v))
+}
+
+// SupabaseGTE applies the GTE predicate on the "supabase" field.
+func SupabaseGTE(v string) predicate.User {
+	return predicate.User(sql.FieldGTE(FieldSupabase, v))
+}
+
+// SupabaseLT applies the LT predicate on the "supabase" field.
+func SupabaseLT(v string) predicate.User {
+	return predicate.User(sql.FieldLT(FieldSupabase, v))
+}
+
+// SupabaseLTE applies the LTE predicate on the "supabase" field.
+func SupabaseLTE(v string) predicate.User {
+	return predicate.User(sql.FieldLTE(FieldSupabase, v))
+}
+
+// SupabaseContains applies the Contains predicate on the "supabase" field.
+func SupabaseContains(v string) predicate.User {
+	return predicate.User(sql.FieldContains(FieldSupabase, v))
+}
+
+// SupabaseHasPrefix applies the HasPrefix predicate on the "supabase" field.
+func SupabaseHasPrefix(v string) predicate.User {
+	return predicate.User(sql.FieldHasPrefix(FieldSupabase, v))
+}
+
+// SupabaseHasSuffix applies the HasSuffix predicate on the "supabase" field.
+func SupabaseHasSuffix(v string) predicate.User {
+	return predicate.User(sql.FieldHasSuffix(FieldSupabase, v))
+}
+
+// SupabaseIsNil applies the IsNil predicate on the "supabase" field.
+func SupabaseIsNil() predicate.User {
+	return predicate.User(sql.FieldIsNull(FieldSupabase))
+}
+
+// SupabaseNotNil applies the NotNil predicate on the "supabase" field.
+func SupabaseNotNil() predicate.User {
+	return predicate.User(sql.FieldNotNull(FieldSupabase))
+}
+
+// SupabaseEqualFold applies the EqualFold predicate on the "supabase" field.
+func SupabaseEqualFold(v string) predicate.User {
+	return predicate.User(sql.FieldEqualFold(FieldSupabase, v))
+}
+
+// SupabaseContainsFold applies the ContainsFold predicate on the "supabase" field.
+func SupabaseContainsFold(v string) predicate.User {
+	return predicate.User(sql.FieldContainsFold(FieldSupabase, v))
 }
 
 // NameEQ applies the EQ predicate on the "name" field.
