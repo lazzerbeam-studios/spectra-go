@@ -10,6 +10,8 @@ type EnvironmentConfiguration struct {
 	Google_Project      string `mapstructure:"GOOGLE_PROJECT"`
 	Google_Credentials  string `mapstructure:"GOOGLE_CREDENTIALS"`
 	Google_Maps_API_Key string `mapstructure:"GOOGLE_MAPS_API_KEY"`
+	SupabaseSecret      string `mapstructure:"SUPABASE_SECRET"`
+	SupabaseIssuer      string `mapstructure:"SUPABASE_ISSUER"`
 }
 
 func SetEnvironment(env string) (cfg EnvironmentConfiguration, err error) {
