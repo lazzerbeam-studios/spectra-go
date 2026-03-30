@@ -40,8 +40,12 @@ func main() {
 		db.SetEntDB(cfg.Database)
 		auth.SetSecret(cfg.Secret)
 		cache.SetClient(cfg.Valkey)
-		// places.SetClient(cfg.Google_Maps_API_Key)
-		// files.SetClientGCP(cfg.Google_Credentials, cfg.Google_Project, cfg.Google_Bucket)
+		// auth.SetSupabaseSecret(cfg.SupabaseSecret)
+		// auth.SetSupabaseIssuer(cfg.SupabaseIssuer)
+		// places.SetClient(cfg.GoogleMapsAPIKey)
+		// files.SetClientGCP(cfg.GoogleCredentials, cfg.GoogleProject, cfg.GoogleBucket)
+		// bunny.SetBunnyVideoClient(cfg.BunnyVideoKey, cfg.BunnyVideoLibraryID)
+		// bunny.SetBunnyStorageClient(cfg.BunnyStorageKey, cfg.BunnyStorageZone, cfg.BunnyStorageRegion, cfg.BunnyStorageCDN)
 
 		mutations.UserHook()
 

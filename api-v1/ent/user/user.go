@@ -17,6 +17,8 @@ const (
 	FieldPassword = "password"
 	// FieldEmail holds the string denoting the email field in the database.
 	FieldEmail = "email"
+	// FieldSupabase holds the string denoting the supabase field in the database.
+	FieldSupabase = "supabase"
 	// FieldName holds the string denoting the name field in the database.
 	FieldName = "name"
 	// FieldImage holds the string denoting the image field in the database.
@@ -34,6 +36,7 @@ var Columns = []string{
 	FieldID,
 	FieldPassword,
 	FieldEmail,
+	FieldSupabase,
 	FieldName,
 	FieldImage,
 	FieldDeleted,
@@ -73,6 +76,11 @@ func ByPassword(opts ...sql.OrderTermOption) OrderOption {
 // ByEmail orders the results by the email field.
 func ByEmail(opts ...sql.OrderTermOption) OrderOption {
 	return sql.OrderByField(FieldEmail, opts...).ToFunc()
+}
+
+// BySupabase orders the results by the supabase field.
+func BySupabase(opts ...sql.OrderTermOption) OrderOption {
+	return sql.OrderByField(FieldSupabase, opts...).ToFunc()
 }
 
 // ByName orders the results by the name field.

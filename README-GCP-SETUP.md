@@ -80,3 +80,17 @@ postgres://postgres:[PASSWORD]@[IP_ADDRESS]:5432/postgres?sslmode=disable
     make argocd-port
 
     kubectl create secret docker-registry container-secret --docker-server=ghcr.io --docker-username=[username] --docker-email=[email] --docker-password=[password] -n [namespace]
+
+###  Products
+
+**1. Favorite**
+
+    - Billing
+    - IAM & Admin
+    - APIs & Services
+    - Network Services
+    - VPC Network
+    - Cloud Storage
+    - Kubernetes Engine
+    - Cloud SQL
+    - Google Auth Platform
