@@ -12,6 +12,12 @@ type EnvironmentConfiguration struct {
 	Google_Maps_API_Key string `mapstructure:"GOOGLE_MAPS_API_KEY"`
 	SupabaseSecret      string `mapstructure:"SUPABASE_SECRET"`
 	SupabaseIssuer      string `mapstructure:"SUPABASE_ISSUER"`
+	Bunny               string `mapstructure:"BUNNY"`
+	BunnyLibrary        string `mapstructure:"BUNNY_LIBRARY"`
+	BunnyStorageKey     string `mapstructure:"BUNNY_STORAGE_KEY"`
+	BunnyStorageZone    string `mapstructure:"BUNNY_STORAGE_ZONE"`
+	BunnyStorageRegion  string `mapstructure:"BUNNY_STORAGE_REGION"`
+	BunnyStorageCDN     string `mapstructure:"BUNNY_STORAGE_CDN"`
 }
 
 func SetEnvironment(env string) (cfg EnvironmentConfiguration, err error) {
