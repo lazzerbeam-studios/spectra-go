@@ -18,9 +18,11 @@ import (
 	"api-go/routes/home_api"
 	"api-go/routes/users_api"
 	"api-go/scripts/bunny"
+	"api-go/scripts/places"
 	"api-go/utils/auth"
 	"api-go/utils/cache"
 	"api-go/utils/db"
+	"api-go/utils/files"
 )
 
 type OptionsCLI struct {
@@ -41,12 +43,15 @@ func main() {
 		db.SetEntDB(cfg.Database)
 		auth.SetSecret(cfg.Secret)
 		cache.SetClient(cfg.Valkey)
+
 		auth.SetSupabaseSecret(cfg.SupabaseSecret)
 		auth.SetSupabaseIssuer(cfg.SupabaseIssuer)
+
+		places.SetClient(cfg.Google_Maps_API_Key)
+		files.SetClientGCP(cfg.Google_Credentials, cfg.Google_Project, cfg.Google_Bucket)
+
 		bunny.SetBunnyVideoClient(cfg.Bunny, cfg.BunnyLibrary)
 		bunny.SetBunnyStorageClient(cfg.BunnyStorageKey, cfg.BunnyStorageZone, cfg.BunnyStorageRegion, cfg.BunnyStorageCDN)
-		// places.SetClient(cfg.Google_Maps_API_Key)
-		// files.SetClientGCP(cfg.Google_Credentials, cfg.Google_Project, cfg.Google_Bucket)
 
 		mutations.UserHook()
 
