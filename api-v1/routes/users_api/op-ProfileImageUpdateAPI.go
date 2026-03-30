@@ -3,6 +3,7 @@ package users_api
 import (
 	"context"
 	"io"
+	"net/http"
 	"strconv"
 	"time"
 
@@ -10,14 +11,14 @@ import (
 	"github.com/jinzhu/copier"
 
 	"api-go/models"
+	"api-go/scripts/bunny"
 	"api-go/utils/auth"
-	"api-go/utils/files"
 )
 
 type ProfileImageUpdateInput struct {
 	auth.AuthParam
 	RawBody huma.MultipartFormFiles[struct {
-		Image huma.FormFile `form:"file" contentType:"text/plain" required:"true"`
+		Image huma.FormFile `form:"file" contentType:"image/*" required:"true"`
 	}]
 }
 
@@ -43,8 +44,9 @@ func ProfileImageUpdateAPI(ctx context.Context, input *ProfileImageUpdateInput) 
 		return nil, huma.Error400BadRequest("Unable to read image.")
 	}
 
+	contentType := http.DetectContentType(image)
 	fileDir := "users/" + strconv.FormatInt(time.Now().UnixNano(), 10) + "-avatar.png"
-	fileUrl, err := files.StorageClientGCP.UploadFile(fileDir, image)
+	fileUrl, err := bunny.UploadMedia(fileDir, image, contentType)
 	if err != nil {
 		return nil, huma.Error400BadRequest("Unable to upload image.")
 	}
