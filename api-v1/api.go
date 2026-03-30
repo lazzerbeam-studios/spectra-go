@@ -17,12 +17,9 @@ import (
 	"api-go/routes/auth_api"
 	"api-go/routes/home_api"
 	"api-go/routes/users_api"
-	"api-go/scripts/bunny"
-	"api-go/scripts/places"
 	"api-go/utils/auth"
 	"api-go/utils/cache"
 	"api-go/utils/db"
-	"api-go/utils/files"
 )
 
 type OptionsCLI struct {
@@ -43,15 +40,12 @@ func main() {
 		db.SetEntDB(cfg.Database)
 		auth.SetSecret(cfg.Secret)
 		cache.SetClient(cfg.Valkey)
-
-		auth.SetSupabaseSecret(cfg.SupabaseSecret)
-		auth.SetSupabaseIssuer(cfg.SupabaseIssuer)
-
-		places.SetClient(cfg.GoogleMapsAPIKey)
-		files.SetClientGCP(cfg.GoogleCredentials, cfg.GoogleProject, cfg.GoogleBucket)
-
-		bunny.SetBunnyVideoClient(cfg.BunnyVideoKey, cfg.BunnyVideoLibraryID)
-		bunny.SetBunnyStorageClient(cfg.BunnyStorageKey, cfg.BunnyStorageZone, cfg.BunnyStorageRegion, cfg.BunnyStorageCDN)
+		// auth.SetSupabaseSecret(cfg.SupabaseSecret)
+		// auth.SetSupabaseIssuer(cfg.SupabaseIssuer)
+		// places.SetClient(cfg.GoogleMapsAPIKey)
+		// files.SetClientGCP(cfg.GoogleCredentials, cfg.GoogleProject, cfg.GoogleBucket)
+		// bunny.SetBunnyVideoClient(cfg.BunnyVideoKey, cfg.BunnyVideoLibraryID)
+		// bunny.SetBunnyStorageClient(cfg.BunnyStorageKey, cfg.BunnyStorageZone, cfg.BunnyStorageRegion, cfg.BunnyStorageCDN)
 
 		mutations.UserHook()
 
