@@ -9,10 +9,10 @@ type EnvironmentConfiguration struct {
 
 	Valkey string `mapstructure:"VALKEY"`
 
-	Google_Bucket       string `mapstructure:"GOOGLE_BUCKET"`
-	Google_Project      string `mapstructure:"GOOGLE_PROJECT"`
-	Google_Credentials  string `mapstructure:"GOOGLE_CREDENTIALS"`
-	Google_Maps_API_Key string `mapstructure:"GOOGLE_MAPS_API_KEY"`
+	GoogleBucket      string `mapstructure:"GOOGLE_BUCKET"`
+	GoogleProject     string `mapstructure:"GOOGLE_PROJECT"`
+	GoogleCredentials string `mapstructure:"GOOGLE_CREDENTIALS"`
+	GoogleMapsAPIKey  string `mapstructure:"GOOGLE_MAPS_API_KEY"`
 
 	SupabaseSecret string `mapstructure:"SUPABASE_SECRET"`
 	SupabaseIssuer string `mapstructure:"SUPABASE_ISSUER"`
