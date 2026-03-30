@@ -16,6 +16,8 @@ func (User) Fields() []ent.Field {
 		field.String("password"),
 		field.String("email").Unique(),
 
+		field.String("supabase").Optional().Unique(),
+
 		field.String("name").Optional(),
 		field.String("image").Optional(),
 
