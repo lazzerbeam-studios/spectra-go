@@ -50,7 +50,7 @@ func main() {
 		places.SetClient(cfg.Google_Maps_API_Key)
 		files.SetClientGCP(cfg.Google_Credentials, cfg.Google_Project, cfg.Google_Bucket)
 
-		bunny.SetBunnyVideoClient(cfg.Bunny, cfg.BunnyLibrary)
+		bunny.SetBunnyVideoClient(cfg.BunnyVideoKey, cfg.BunnyVideoLibraryID)
 		bunny.SetBunnyStorageClient(cfg.BunnyStorageKey, cfg.BunnyStorageZone, cfg.BunnyStorageRegion, cfg.BunnyStorageCDN)
 
 		mutations.UserHook()
