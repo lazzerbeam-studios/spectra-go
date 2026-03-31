@@ -14,9 +14,8 @@
 
 **4. Create Secret in `api-stag` :**
 
-Generate a JWT secret first:
-
     openssl rand -base64 48
+    python3 -c 'import urllib.parse; print(urllib.parse.quote("[PASSWORD]", safe=""))'
 
     kubectl create secret generic nocodb-secret \
       --from-literal=NC_AUTH_JWT_SECRET='[secure-jwt-secret]' \
