@@ -18,11 +18,11 @@
     3. Name the client.
     4. Under Authorized JavaScript origins, add:
         https://[domain.com]
-        https://[staging.domain.com]
-        http://localhost:[port]
+        https://stag.[domain.com]
+        http://localhost:8081
 
     5. Under Authorized redirect URIs, add the callback URL provided by Supabase (Authentication > Providers > Google):
-        https://[auth.domain.com]/auth/v1/callback
+        https://auth.[domain.com]/auth/v1/callback
 
     6. Click Create to get Client ID and Client Secret.
 
@@ -38,16 +38,14 @@
 
 **2. Supabase URL Configuration:**
 
-Site URL:
-
+    Site URL:
     https://[domain.com]
 
-Redirect URLs:
-
-    https://[staging.domain.com]/auth/callback
-    http://localhost:[port]/auth/callback
+    Redirect URLs:
+    https://stag.[domain.com]/auth/callback
+    http://localhost:8081/auth/callback
     https://[domain.com]/auth/callback
-    [app-scheme]://auth/callback
+    [app]://auth/callback
 
 **3. Supabase Environment Variables:**
 
