@@ -1,4 +1,4 @@
-#!/bin/bash
+# !/bin/bash
 
 docker_tag="ute1774990007"
 epoch_time="ute$(date +%s)"
