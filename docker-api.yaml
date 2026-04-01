@@ -3,7 +3,7 @@ version: "3.9"
 services:
   api-service:
     build: .
-    image: ghcr.io/lazzr-labs/photon:ute1774990007
+    image: ghcr.io/lazzr-labs/photon:ute1775062367
     volumes:
       - .:/code
     ports:
