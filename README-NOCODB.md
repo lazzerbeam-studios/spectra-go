@@ -49,7 +49,7 @@
 
 **5. Create Subdomain:**
 
-    nocodb.[your-domain.com] -> nocodb-ip
+    nocodb.[domain] -> nocodb-ip
 
 ### VM
 
@@ -86,7 +86,7 @@
       --restart unless-stopped \
       -p 127.0.0.1:8080:8080 \
       -e NC_AUTH_JWT_SECRET='[GENERATED_SECRET]' \
-      -e NC_PUBLIC_URL='https://nocodb.[your-domain.com]' \
+      -e NC_PUBLIC_URL='https://nocodb.[domain]' \
       -e NC_TOOL_DIR='/usr/app/data' \
       -e NC_DISABLE_TELE='true' \
       -v /opt/nocodb/data:/usr/app/data \
@@ -96,7 +96,7 @@
 
 ```bash
 sudo tee /etc/caddy/Caddyfile >/dev/null <<'EOF'
-nocodb.[your-domain.com] {
+nocodb.[domain] {
     reverse_proxy 127.0.0.1:8080
 }
 EOF
@@ -111,7 +111,7 @@ EOF
 
 **1. Confirm App Opens:**
 
-    https://nocodb.[your-domain.com]
+    https://nocodb.[domain]
 
 **2. Confirm Container Is Running:**
 
