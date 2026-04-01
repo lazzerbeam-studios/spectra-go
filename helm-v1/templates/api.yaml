@@ -4,6 +4,7 @@ metadata:
   name: api-go-deployment
 spec:
   replicas: {{ .Values.api.replicas }}
+  revisionHistoryLimit: 0
   strategy:
     type: Recreate
   selector:
@@ -36,6 +37,7 @@ metadata:
   name: cron-go-deployment
 spec:
   replicas: {{ .Values.cron.replicas }}
+  revisionHistoryLimit: 0
   strategy:
     type: Recreate
   selector:

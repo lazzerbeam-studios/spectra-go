@@ -8,7 +8,7 @@
     2. Select User Type (Internal or External).
     3. Fill in the App Information (App name, User support email, App logo).
     4. Fill in the App domain links (Homepage, Privacy Policy, Terms of Service).
-    5. Add Authorized domains (e.g. [domain.com], supabase.co).
+    5. Add Authorized domains (e.g. [domain], supabase.co).
     6. Provide developer contact information and save.
 
 **2. Google Client:**
@@ -17,12 +17,12 @@
     2. Set the Application type to Web application.
     3. Name the client.
     4. Under Authorized JavaScript origins, add:
-        https://[domain.com]
-        https://stag.[domain.com]
+        https://[domain]
+        https://stag.[domain]
         http://localhost:8081
 
     5. Under Authorized redirect URIs, add the callback URL provided by Supabase (Authentication > Providers > Google):
-        https://auth.[domain.com]/auth/v1/callback
+        https://auth.[domain]/auth/v1/callback
 
     6. Click Create to get Client ID and Client Secret.
 
@@ -39,12 +39,12 @@
 **2. Supabase URL Configuration:**
 
     Site URL:
-    https://[domain.com]
+    https://[domain]
 
     Redirect URLs:
-    https://stag.[domain.com]/auth/callback
+    https://stag.[domain]/auth/callback
     http://localhost:8081/auth/callback
-    https://[domain.com]/auth/callback
+    https://[domain]/auth/callback
     [app]://auth/callback
 
 **3. Supabase Environment Variables:**
