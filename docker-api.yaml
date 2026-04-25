@@ -1,5 +1,3 @@
-version: "3.9"
-
 services:
   api-service:
     build: .
@@ -9,8 +7,7 @@ services:
     ports:
       - "8080:8080"
     command: >
-      sh -c
-      "go run api-go --env=docker --server=api"
+      sh -c "go run api-go --env=docker --server=api"
     networks:
       docker-network: {}
 

@@ -1,13 +1,11 @@
-version: "3.9"
-
 services:
   postgres-service:
-    image: postgres
+    image: postgres:18
     restart: always
     ports:
       - "5432:5432"
     volumes:
-      - postgres_data:/var/lib/postgresql/data/
+      - postgres_data:/var/lib/postgresql
     environment:
       - POSTGRES_DB=postgres
       - POSTGRES_USER=postgres
