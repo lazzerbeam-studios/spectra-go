@@ -36,4 +36,11 @@ func Register(api huma.API) {
 		Tags:        []string{"users"},
 	}, ProfileImageUpdateAPI)
 
+	huma.Register(api, huma.Operation{
+		OperationID: "ProfileDeleteAPI",
+		Method:      http.MethodDelete,
+		Path:        "/users/profile",
+		Tags:        []string{"users"},
+	}, ProfileDeleteAPI)
+
 }

@@ -22,7 +22,10 @@ func AuthUser(token string) (*ent.User, error) {
 		return nil, errors.New("unable to authenticate")
 	}
 
-	userObj, err := db.EntDB.User.Query().Where(user.ID(userID)).Only(ctx)
+	userObj, err := db.EntDB.User.Query().
+		Where(user.Deleted(false)).
+		Where(user.ID(userID)).
+		Only(ctx)
 	if err != nil {
 		return nil, errors.New("user not found")
 	}
