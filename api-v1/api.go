@@ -16,6 +16,7 @@ import (
 	"api-go/mutations"
 	"api-go/routes/auth_api"
 	"api-go/routes/home_api"
+	"api-go/routes/places_api"
 	"api-go/routes/users_api"
 	"api-go/utils/auth"
 	"api-go/utils/cache"
@@ -76,6 +77,7 @@ func runApi(hooks humacli.Hooks, options *OptionsCLI) {
 	auth_api.Register(api)
 	home_api.Register(api)
 	users_api.Register(api)
+	places_api.Register(api)
 
 	hooks.OnStart(func() {
 		options.Port = 8080
