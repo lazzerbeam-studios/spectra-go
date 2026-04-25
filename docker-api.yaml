@@ -1,16 +1,13 @@
-version: "3.9"
-
 services:
   api-service:
     build: .
-    image: ghcr.io/lazzr-labs/photon:ute1775062971
+    image: ghcr.io/lazzr-labs/photon:ute1777097246
     volumes:
       - .:/code
     ports:
       - "8080:8080"
     command: >
-      sh -c
-      "go run api-go --env=docker --server=api"
+      sh -c "go run api-go --env=docker --server=api"
     networks:
       docker-network: {}
 
