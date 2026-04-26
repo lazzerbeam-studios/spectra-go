@@ -2,7 +2,7 @@ name: Go Testing
 
 on:
   push:
-    branches: ["develop"]
+    branches: [ "develop" ]
 
 jobs:
   testing:
